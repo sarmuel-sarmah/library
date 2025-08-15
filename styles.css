@@ -1,0 +1,7 @@
+.book {
+    border: 1px solid seagreen;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    max-width: 300px;
+}
