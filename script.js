@@ -13,6 +13,7 @@ class Book {
 function addBookToLibrary(title, author, pages, category) {
     const book = new Book(title, author, pages, category)
     myLibrary.push(book);
+    return book;
 }
 console.log(myLibrary)
 
@@ -28,7 +29,33 @@ addBookToLibrary("The da Vinci code", "Dan Brown", 434, "Philosophy");
 addBookToLibrary("Harry Potter and the philosopher's stone", "J. K. Rowling", 699, "Fiction");
 addBookToLibrary("A little Life", "Hanya Yanagiraha", 239, "Relationships");
 addBookToLibrary("The Kite Runner", "Khaled Hosseini", 594, "Literature");
-addBookToLibrary("What if?: Serious scientific ANswers to Absurd Hypothetical Questions", "Randall Munroe", 565, "science");
+addBookToLibrary("What if?: Serious scientific Answers to Absurd Hypothetical Questions", "Randall Munroe", 565, "science");
 addBookToLibrary("Pride and Prejudice", "Jane Austen", 1000, "Relationships");
 addBookToLibrary("Twilight", "Stephenie Meyer", 480, "Fiction");
 
+function displayBooks(books){
+    books.forEach(book => {
+        const bookList = document.getElementById('booklist');
+
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add('book');
+
+        const title = document.createElement('h3');
+        title.textContent = book.title;
+
+        const author = document.createElement('p');
+        author.textContent = `Author: ${book.author}`;
+
+        const pages = document.createElement('p');
+        pages.textContent = `Pages: ${book.pages}`;
+
+        bookDiv.appendChild(title);
+        bookDiv.appendChild(author);
+        bookDiv.appendChild(pages);
+
+        //Append the book div to the booklist div
+        bookList.appendChild(bookDiv);
+    });
+}
+
+displayBooks(myLibrary)
