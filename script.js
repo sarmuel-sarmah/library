@@ -1,16 +1,17 @@
 const myLibrary = [];
 
 class Book {
-    constructor(title, author, pages, category) {
+    constructor(title, author, pages, category, isRead) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.author = author;
         this.pages = pages;
         this.category = category;
+        this.isRead = isRead
     }
 }
 
-function addBookToLibrary(title, author, pages, category) {
+function addBookToLibrary(title, author, pages, category, isRead="false") {
     const book = new Book(title, author, pages, category)
     myLibrary.push(book);
     return book;
@@ -33,10 +34,12 @@ addBookToLibrary("What if?: Serious scientific Answers to Absurd Hypothetical Qu
 addBookToLibrary("Pride and Prejudice", "Jane Austen", 1000, "Relationships");
 addBookToLibrary("Twilight", "Stephenie Meyer", 480, "Fiction");
 
-function displayBooks(books){
-    books.forEach(book => {
-        const bookList = document.getElementById('booklist');
+function displayBooks(){
+    // Select the div where the items will be displayed
+    const bookList = document.getElementById('booklist');
 
+    // Loop through each item and append it to the div
+    myLibrary.forEach(book => {
         const bookDiv = document.createElement('div');
         bookDiv.classList.add('book');
 
@@ -57,5 +60,53 @@ function displayBooks(books){
         bookList.appendChild(bookDiv);
     });
 }
+
+const newBookBtn = document.getElementById('newBookBtn');
+const modal = document.getElementById('bookModal');
+const closeBtn = document.querySelector('.close');
+const bookForm = document.getElementById('bookForm');
+const bookList = document.getElementById('bookList');
+
+// Open modal when button is clicked
+newBookBtn.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+// Close modal when button is clicked
+closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+})
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target == modal) {
+        modal.style.display = 'none'
+    };
+});
+
+// Handle form submission
+bookForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Get form values
+    const title = document.getElementById('title').value;
+
+    const author = document.getElementById('author').value;
+
+    const pages = document.getElementById('pages').value;
+
+    const category = document.getElementById('category');
+
+    const isRead = document.getElementById('isRead').checked;
+
+    addBookToLibrary(title, author, pages, category, isRead);
+    
+    // Reset and close form
+    bookForm.reset();
+    modal.style.display = 'none';
+
+    // Update book display
+    displayBooks(myLibrary)
+});
 
 displayBooks(myLibrary)
