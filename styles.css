@@ -5,3 +5,63 @@
     border-radius: 20px;
     max-width: 300px;
 }
+
+::backdrop {
+    background-image: linear-gradient(
+        45deg,
+        magenta,
+        rebeccapurple,
+        dodgerblue,
+        green
+    );
+    opacity: 0.75;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
