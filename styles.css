@@ -54,3 +54,16 @@ button {
     margin: 10px;
     cursor: pointer;
 }
+
+input[type="checkbox"] {
+    width: auto;
+    display: inline-block;
+    margin: 3px;
+}
+
+.form-group label[for="isRead"] {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+}
