@@ -7,19 +7,31 @@ class Book {
         this.author = author;
         this.pages = pages;
         this.category = category;
-        this.isRead = isRead
+        this.isRead = isRead || false; // defaults to false
+
+        //changing between true or false
+        this.toggleReadStatus = function() {
+            this.isRead = !this.isRead;
+            return this.isRead;
+        };
     }
 }
 
 function addBookToLibrary(title, author, pages, category, isRead="false") {
-    const book = new Book(title, author, pages, category)
+    const book = {
+        id: crypto.randomUUID,
+        title,
+        author,
+        pages,
+        category,
+        isRead
+    }
     myLibrary.push(book);
     return book;
 }
-console.log(myLibrary)
 
-addBookToLibrary("To Kill a Mockingbird", "Haper lee", 700, "history");
-addBookToLibrary("The Seven Husbands of Evelyn Hugo", "Taylor Jenkins", 500, "Fiction");
+addBookToLibrary("To Kill a Mockingbird", "Haper lee", 700, "history", true);
+addBookToLibrary("The Seven Husbands of Evelyn Hugo", "Taylor Jenkins", 500, "Fiction", true);
 addBookToLibrary("The Alcheimist", "Paulo Coelho", 135, "Fiction");
 addBookToLibrary("The Fault in Our Stars", "John Green", 400, "Astronomy");
 addBookToLibrary("The Book Thief", "Markus Zusak", 545, "Fiction");
@@ -52,9 +64,24 @@ function displayBooks(){
         const pages = document.createElement('p');
         pages.textContent = `Pages: ${book.pages}`;
 
+        const category = document.createElement('p');
+        category.textContent = `Category: ${book.category}`;
+
+        const isRead = document.createElement('p');
+        isRead.textContent = ` Read: ${book.isRead ? `Yes` : 'No'}`;
+
+        const toggleBtn = document.createElement('button');
+        toggleBtn.textContent = 'Toggle read status';
+        toggleBtn.addEventListener('click', () => {
+            myLibrary.find(b => b.id === `${book.id}`);
+        })             
+
         bookDiv.appendChild(title);
         bookDiv.appendChild(author);
         bookDiv.appendChild(pages);
+        bookDiv.appendChild(category);
+        bookDiv.appendChild(isRead);
+        bookDiv.appendChild(toggleBtn)
 
         //Append the book div to the booklist div
         bookList.appendChild(bookDiv);
@@ -86,6 +113,8 @@ window.addEventListener('click', (e) => {
 
 // Handle form submission
 bookForm.addEventListener('submit', (e) => {
+    bookList.innerHTML = '';
+
     e.preventDefault();
 
     // Get form values
@@ -106,7 +135,8 @@ bookForm.addEventListener('submit', (e) => {
     modal.style.display = 'none';
 
     // Update book display
-    displayBooks(myLibrary)
+    displayBooks();
 });
 
-displayBooks(myLibrary)
+displayBooks()
+console.log(myLibrary.length)
