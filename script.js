@@ -1,4 +1,4 @@
-const myLibrary = [];
+const myLibrary = []; // Array to store the books
 
 class Book {
     constructor(title, author, pages, category, isRead) {
@@ -7,19 +7,16 @@ class Book {
         this.author = author;
         this.pages = pages;
         this.category = category;
-        this.isRead = isRead || false; // defaults to false
-
-        //changing between true or false
-        this.toggleReadStatus = function() {
-            this.isRead = !this.isRead;
-            return this.isRead;
-        };
+        this.isRead = isRead; 
     }
-}
+
+    toggleReadStatus () {
+        this.isRead = !this.isRead;
+    }
+};
 
 function addBookToLibrary(title, author, pages, category, isRead="false") {
     const book = {
-        id: crypto.randomUUID,
         title,
         author,
         pages,
@@ -71,9 +68,13 @@ function displayBooks(){
         isRead.textContent = ` Read: ${book.isRead ? `Yes` : 'No'}`;
 
         const toggleBtn = document.createElement('button');
-        toggleBtn.textContent = 'Toggle read status';
-        toggleBtn.addEventListener('click', () => {
-            myLibrary.find(b => b.id === `${book.id}`);
+        toggleBtn.textContent = 'Toggle Read';
+        toggleBtn.addEventListener('click', (e) => {
+            const book = e.target.parentElement.getAttribute("book.id");
+            if (book) {
+                book.toggleReadStatus();
+                displayBooks()
+            }
         })             
 
         bookDiv.appendChild(title);
@@ -119,13 +120,9 @@ bookForm.addEventListener('submit', (e) => {
 
     // Get form values
     const title = document.getElementById('title').value;
-
     const author = document.getElementById('author').value;
-
     const pages = document.getElementById('pages').value;
-
     const category = document.getElementById('category');
-
     const isRead = document.getElementById('isRead').checked;
 
     addBookToLibrary(title, author, pages, category, isRead);
@@ -140,3 +137,4 @@ bookForm.addEventListener('submit', (e) => {
 
 displayBooks()
 console.log(myLibrary.length)
+console.log(myLibrary)
