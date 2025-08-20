@@ -10,37 +10,34 @@ class Book {
         this.isRead = isRead; 
     }
 
-    toggleReadStatus () {
-        this.isRead = !this.isRead;
-    }
 };
 
 function addBookToLibrary(title, author, pages, category, isRead="false") {
-    const book = {
+    const book = new Book (
         title,
         author,
         pages,
         category,
         isRead
-    }
+    )
     myLibrary.push(book);
     return book;
 }
 
 addBookToLibrary("To Kill a Mockingbird", "Haper lee", 700, "history", true);
 addBookToLibrary("The Seven Husbands of Evelyn Hugo", "Taylor Jenkins", 500, "Fiction", true);
-addBookToLibrary("The Alcheimist", "Paulo Coelho", 135, "Fiction");
-addBookToLibrary("The Fault in Our Stars", "John Green", 400, "Astronomy");
-addBookToLibrary("The Book Thief", "Markus Zusak", 545, "Fiction");
-addBookToLibrary("The Hunger Games", "Suzanne Collins", 605, "Literature");
-addBookToLibrary("The Midnight Library", "Matt Haig", 440, "Relationships");
-addBookToLibrary("The Perks of Being a Wallflower", "Stephan Chbosky", 811, "Literature");
-addBookToLibrary("The da Vinci code", "Dan Brown", 434, "Philosophy");
-addBookToLibrary("Harry Potter and the philosopher's stone", "J. K. Rowling", 699, "Fiction");
-addBookToLibrary("A little Life", "Hanya Yanagiraha", 239, "Relationships");
-addBookToLibrary("The Kite Runner", "Khaled Hosseini", 594, "Literature");
-addBookToLibrary("What if?: Serious scientific Answers to Absurd Hypothetical Questions", "Randall Munroe", 565, "science");
-addBookToLibrary("Pride and Prejudice", "Jane Austen", 1000, "Relationships");
+addBookToLibrary("The Alcheimist", "Paulo Coelho", 135, "Fiction", false);
+addBookToLibrary("The Fault in Our Stars", "John Green", 400, "Astronomy", false);
+addBookToLibrary("The Book Thief", "Markus Zusak", 545, "Fiction", true);
+addBookToLibrary("The Hunger Games", "Suzanne Collins", 605, "Literature", true);
+addBookToLibrary("The Midnight Library", "Matt Haig", 440, "Relationships", false);
+addBookToLibrary("The Perks of Being a Wallflower", "Stephan Chbosky", 811, "Literature", true);
+addBookToLibrary("The da Vinci code", "Dan Brown", 434, "Philosophy", false);
+addBookToLibrary("Harry Potter and the philosopher's stone", "J. K. Rowling", 699, "Fiction", true);
+addBookToLibrary("A little Life", "Hanya Yanagiraha", 239, "Relationships", false);
+addBookToLibrary("The Kite Runner", "Khaled Hosseini", 594, "Literature", true);
+addBookToLibrary("What if?: Serious scientific Answers to Absurd Hypothetical Questions", "Randall Munroe", 565, "science", false);
+addBookToLibrary("Pride and Prejudice", "Jane Austen", 1000, "Relationships", true);
 addBookToLibrary("Twilight", "Stephenie Meyer", 480, "Fiction");
 
 function displayBooks(){
