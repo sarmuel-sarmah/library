@@ -10,6 +10,9 @@ class Book {
         this.isRead = isRead; 
     }
 
+    toggleReadStatus() {
+        this.isRead != this.isRead;
+    }
 };
 
 function addBookToLibrary(title, author, pages, category, isRead="false") {
@@ -67,9 +70,9 @@ function displayBooks(){
         const toggleBtn = document.createElement('button');
         toggleBtn.textContent = 'Toggle Read';
         toggleBtn.addEventListener('click', (e) => {
-            const book = e.target.parentElement.getAttribute("book.id");
-            if (book) {
-                book.toggleReadStatus();
+            const bookId = e.target.parentElement.getAttribute("book.id");
+            if (bookId) {
+                bookId.toggleReadStatus();
                 displayBooks()
             }
         })             
